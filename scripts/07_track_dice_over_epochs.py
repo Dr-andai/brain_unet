@@ -25,6 +25,12 @@ device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 dataset = BrainMRIDataset(image_dir, mask_dir)
 val_loader = DataLoader(dataset, batch_size=1, shuffle=False)
 
+# Epoch and Dice relationship
+"""
+- Early Epochs - Dice starts low — the model doesn't yet understand the task
+- Middle Epochs	Dice increases as the model learns to better segment regions
+- Later Epochs	Dice plateaus — model can't improve further on validation data
+"""
 # Dice function
 def dice_score(pred, target, num_classes=3):
     dice = []
@@ -76,7 +82,7 @@ output_csv.parent.mkdir(exist_ok=True)
 df.to_csv(output_csv, index=False)
 print(f"\n✅ Saved Dice scores to {output_csv}")
 
-# Plot
+# Shwo plot
 plt.figure(figsize=(10, 6))
 plt.plot(df["epoch"], df["dice_class0"], label="Class 0")
 plt.plot(df["epoch"], df["dice_class1"], label="Class 1")

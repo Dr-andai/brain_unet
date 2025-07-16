@@ -1,0 +1,1 @@
+Other epoch files (1-19) have been .gitignored because of storage

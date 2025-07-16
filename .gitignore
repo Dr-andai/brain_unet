@@ -11,7 +11,6 @@ wheels/
 
 # data
 /data/jpegs
-/data/processed_numpy
 
 # checkpoints
-checkpoints
+checkpoints_

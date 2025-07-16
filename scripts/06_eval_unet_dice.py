@@ -28,6 +28,12 @@ model.load_state_dict(torch.load(checkpoint_path, map_location=device))
 model.eval()
 
 # Dice score function
+"""
+Dice score = how well the predicted segmentation matches the ground truth mask.
+The Dice coefficient measures overlap between:
+- the predicted mask (P) and
+- the ground truth mask (G)
+"""
 def dice_score(pred, target, num_classes=3):
     dice = []
     for cls in range(num_classes):
