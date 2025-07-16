@@ -1,0 +1,37 @@
+name: Deploy Gradio App to HF Space
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout full repo
+        uses: actions/checkout@v3
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install git-lfs
+
+      - name: Copy gradio_app to temp folder
+        run: |
+          mkdir hf_app
+          cp -r gradio_app/* hf_app/
+
+      - name: Push to Hugging Face Space
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+        run: |
+          cd hf_app
+          git init
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git remote add origin https://huggingface_hub:${HF_TOKEN}@huggingface.co/spaces/AndaiMD/Brain_Unet_App
+          git lfs install
+          git add .
+          git commit -m "Deploy Gradio App"
+          git push --force origin master
