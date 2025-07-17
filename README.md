@@ -5,20 +5,20 @@ This repository handles **data preprocessing**, **unsupervised mask generation**
 ---
 
 ## 📂 Project Structure
-brain_unet/
-├── checkpoints/# Saved model weights
-├── data/ # kmeans_masks and processed MRI images (raw datasest available in link above)
-├── datasets/ # Custom PyTorch dataset class
-├── models/ # U-Net model
-├── results
-├── scripts/
-│ ├── 01_preprocess.py
-│ ├── 02_cluster_kmeans_masks.py
-│ ├── 03_generate_kmeans_masks.py
-│ ├── 04_train_unet.py
-│ └── 05_visualize_predictions.py
-│ └── 06_eval_unet_dice.py
-│ └── 07_track_dice_over_epochs.py
+brain_unet/  
+├── checkpoints/# Saved model weights  
+├── data/ # kmeans_masks and processed MRI images (raw datasest available in link above)  
+├── datasets/ # Custom PyTorch dataset class  
+├── models/ # U-Net model  
+├── results  
+├── scripts/  
+│ ├── 01_preprocess.py  
+│ ├── 02_cluster_kmeans_masks.py  
+│ ├── 03_generate_kmeans_masks.py  
+│ ├── 04_train_unet.py  
+│ └── 05_visualize_predictions.py  
+│ └── 06_eval_unet_dice.py  
+│ └── 07_track_dice_over_epochs.py  
 
 Each image is clustered into 3 tissue types:
 Class 0: Background  
